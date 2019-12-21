@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-
+from wain_nro7_app.models import Place
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    birth_day = serializers.DateField()
+
     class Meta:
         model = User
         fields = ['first_name', 'last_name','username', 'password', 'gender', 'birth_day' 'email']
@@ -20,3 +22,14 @@ class UserCreateSerializer(serializers.ModelSerializer):
         new_user.set_password(password)
         new_user.save()
         return validated_data
+
+class PlacesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Place
+        fields = ["id", "name ", "img", "xcoordinate","ycoordinate", "trivia"]
+ 
+
+
+
+
+

@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import UserCreateAPIView, 
+from wain_nro7_app.views import UserCreateAPIView, MapListView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', TokenObtainPairView.as_view() , name='login'),
     path('register/', UserCreateAPIView.as_view(), name='register'),
+    path('maplist/', MapListView.as_view(), name='map-list'),
+    # path('gameslist/', GamesListfoView.as_view(), name='games-list'),
 ]
 
 
