@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'wain_nro7_app',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
