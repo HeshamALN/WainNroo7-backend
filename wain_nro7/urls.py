@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from wain_nro7_app.views import UserCreateAPIView, MapListView
+from wain_nro7_app.views import UserCreateAPIView, MapListView, ProfileAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 urlpatterns = [
@@ -23,6 +23,7 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view() , name='login'),
     path('register/', UserCreateAPIView.as_view(), name='register'),
     path('maplist/', MapListView.as_view(), name='map-list'),
+    path('profile/', ProfileAPIView.as_view(), name='profile'),
     # path('gameslist/', GamesListfoView.as_view(), name='games-list'),
 ]
 
