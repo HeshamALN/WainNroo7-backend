@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .serializers import UserCreateSerializer, PlacesSerializer
-from .models import Place
+from .serializers import UserCreateSerializer, PlacesSerializer, ProfileSerializer
+from .models import Place, Profile
 from rest_framework.generics import (
 	ListAPIView,
 	RetrieveAPIView,
@@ -20,3 +20,9 @@ class MapListView(ListAPIView):
 	serializer_class = PlacesSerializer
 	permission_classes = [AllowAny]
 
+class ProfileAPIView(RetrieveAPIView):
+	serializer_class = ProfileSerializer
+	permission_classes = [IsAuthenticated]
+
+	def get_object(self):
+		return self.request.user
