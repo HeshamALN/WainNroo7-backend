@@ -25,14 +25,14 @@ class Trivia(models.Model):
     # lock=models.BooleanField(default= False)
     # score=models.FloatField()
     place= models.OneToOneField(Place, on_delete=models.CASCADE, related_name="Place" )
+    profile=models.ManyToManyField(Profile, related_name="trivias" )
 
 
 class Question(models.Model):
     question=models.TextField()
     order=models.PositiveIntegerField()
     trivia=models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="questions" )
-    # profile=models.ManyToManyField(Profile, related_name="qustions" )
-
+    #
 
 
 class Answer(models.Model):
@@ -48,9 +48,26 @@ class Profile(models.Model):
                                         (2, ("Female"))),
                                 default=1)
     avatar=models.ImageField(upload_to='', null=True, blank=True)
-# class Coordinate(models.Model):
-#   xcoordinate=models.FloatField()
-#   ycoordinate=models.FloatField()
+    score= models.PositiveIntegerField()
+    user= models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile" )
+
+
+
+
+class Diff(models.Model):
+    img=models.ImageField(upload_to='', null=True, blank=True)
+    coordinate=models.ForeignKey(Coordinate, on_delete=models.CASCADE, related_name="coordinate" )
+
+
+
+
+class Coordinate(models.Model):
+  xcoordinate=models.FloatField()
+  ycoordinate=models.FloatField()
+
+
+
+
 
 # class Games(models.Model):
 #   trivia= models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="Trivia" )

@@ -32,7 +32,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     user_info = UserCreateSerializer(many=True)
     class Meta:
         model = Profile
-        fields = ['user_info', 'birth_day', 'gander', 'avatar']
+        fields = ['user_info', 'birth_day', 'gander', 'avatar', 'score']
 
 
 
