@@ -10,6 +10,7 @@ from rest_framework.generics import (
 	CreateAPIView
 	)
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
 # Create your views here.
 class UserCreateAPIView(CreateAPIView):
 	serializer_class = UserCreateSerializer
@@ -26,3 +27,14 @@ class ProfileAPIView(RetrieveAPIView):
 
 	def get_object(self):
 		return self.request.user
+
+class Score(APIView):
+
+	permission_classes= [IsAuthenticated]
+
+	def post(self, request, format=None):
+		profile = request.user.profile
+		profile.score += request.POST.get('score')
+		profile.save()
+		return Response()
+
