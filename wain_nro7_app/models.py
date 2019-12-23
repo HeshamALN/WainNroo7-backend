@@ -43,10 +43,14 @@ class Answer(models.Model):
 
 
 class Profile(models.Model):
-    birth_day=models.DateField()
-    gander=models.IntegerField(choices=((1, ("Male")),
-                                        (2, ("Female"))),
-                                default=1)
+    Male = 'Male'
+    Female = 'Female'
+    GENDER = [
+    ('Male','Male'),
+    ('Female', 'Female')]
+
+    birthday=models.DateField()
+    gender=models.CharField(choices=GENDER, max_length=6)
     avatar=models.ImageField(upload_to='', null=True, blank=True)
 # class Coordinate(models.Model):
 #   xcoordinate=models.FloatField()
