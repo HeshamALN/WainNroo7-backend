@@ -20,14 +20,17 @@ class Trivia(models.Model):
     # qustions= models.ForeignKey(Qustion, on_delete=models.CASCADE, related_name="qustion" )
     # lock=models.BooleanField(default= False)
     # score=models.FloatField()
+
     place= models.OneToOneField(Place, on_delete=models.CASCADE, related_name="trivia" )
     # profile=models.ManyToManyField(Profile, related_name="trivias" )
+
 
 
 class Question(models.Model):
     question=models.TextField()
     order=models.PositiveIntegerField()
     trivia=models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="questions" )
+
 
 
 class Answer(models.Model):
@@ -56,6 +59,7 @@ class Difference(models.Model):
     diffs=models.PositiveIntegerField()
 
 
+
 class Coordinate(models.Model):
     xcoordinate=models.FloatField()
     ycoordinate=models.FloatField()
@@ -63,7 +67,7 @@ class Coordinate(models.Model):
 
 class Riddle(models.Model):
     place=  models.OneToOneField(Place, on_delete=models.CASCADE, related_name="riddle" )
-    
+
 
 # class Games(models.Model):
 #   trivia= models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="Trivia" )

@@ -35,6 +35,7 @@ class coorsSerializer(serializers.ModelSerializer):
 class DifferencesSerializer(serializers.ModelSerializer):
     coordinates = coorsSerializer(many=True)
     class Meta:
+
         model = Difference
         fields = ["id", "diffs", "img", "coordinates"]
  
@@ -45,6 +46,7 @@ class DifferencesSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = Profile
 #         fields = ['user_info', 'birth_day', 'gander', 'avatar', 'score']
+
 
 
 
