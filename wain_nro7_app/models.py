@@ -11,9 +11,6 @@ class Place(models.Model):
     # lock = models.BooleanField(default= False)
     xcoordinate= models.FloatField()
     ycoordinate= models.FloatField()
-    # trivia= models.OneToOneField(Trivia, on_delete=models.CASCADE, related_name="Trivia" )
-    # riddle= models.ForeignKey(Riddles, on_delete=models.CASCADE, related_name="Riddles" )
-    # diff= models.ForeignKey(Diff, on_delete=models.CASCADE, related_name="Diff" )
     def __str__(self):
         return self.name
 
@@ -63,6 +60,10 @@ class Coordinate(models.Model):
     xcoordinate=models.FloatField()
     ycoordinate=models.FloatField()
     difference=models.ForeignKey(Difference, on_delete=models.CASCADE, related_name="coordinates" )
+
+class Riddle(models.Model):
+    place=  models.OneToOneField(Place, on_delete=models.CASCADE, related_name="riddle" )
+    
 
 # class Games(models.Model):
 #   trivia= models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="Trivia" )

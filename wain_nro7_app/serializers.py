@@ -24,7 +24,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class PlacesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
-        fields = ["id", "name ", "img", "xcoordinate","ycoordinate", "trivia", "difference"]
+        fields = ["id", "name", "xcoordinate","ycoordinate", "trivia", "difference", "riddle"]
  
 class coorsSerializer(serializers.ModelSerializer):
     class Meta:
