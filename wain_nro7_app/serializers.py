@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from wain_nro7_app.models import Place, Profile
+from wain_nro7_app.models import Place, Difference, Coordinate#, Profile
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -24,15 +24,27 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class PlacesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
-        fields = ["id", "name ", "img", "xcoordinate","ycoordinate", "trivia"]
+        fields = ["id", "name ", "img", "xcoordinate","ycoordinate", "trivia", "difference"]
+ 
+class coorsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Coordinate
+        fields = ["id","xcoordinate","ycoordinate"]
+ 
+
+class DifferencesSerializer(serializers.ModelSerializer):
+    coordinates = coorsSerializer(many=True)
+    class Meta:
+        model = Difference
+        fields = ["id", "diffs", "img", "coordinates"]
  
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    user_info = UserCreateSerializer(many=True)
-    class Meta:
-        model = Profile
-        fields = ['user_info', 'birth_day', 'gander', 'avatar']
+# class ProfileSerializer(serializers.ModelSerializer):
+#     user_info = UserCreateSerializer(many=True)
+#     class Meta:
+#         model = Profile
+#         fields = ['user_info', 'birth_day', 'gander', 'avatar', 'score']
 
 
 

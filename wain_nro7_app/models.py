@@ -9,7 +9,6 @@ class Place(models.Model):
     name = models.CharField(max_length=120)
     # location = 
     # lock = models.BooleanField(default= False)
-    img = models.ImageField(upload_to='', null=True, blank=True)
     xcoordinate= models.FloatField()
     ycoordinate= models.FloatField()
     # trivia= models.OneToOneField(Trivia, on_delete=models.CASCADE, related_name="Trivia" )
@@ -24,15 +23,14 @@ class Trivia(models.Model):
     # qustions= models.ForeignKey(Qustion, on_delete=models.CASCADE, related_name="qustion" )
     # lock=models.BooleanField(default= False)
     # score=models.FloatField()
-    place= models.OneToOneField(Place, on_delete=models.CASCADE, related_name="Place" )
+    place= models.OneToOneField(Place, on_delete=models.CASCADE, related_name="trivia" )
+    # profile=models.ManyToManyField(Profile, related_name="trivias" )
 
 
 class Question(models.Model):
     question=models.TextField()
     order=models.PositiveIntegerField()
     trivia=models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="questions" )
-    # profile=models.ManyToManyField(Profile, related_name="qustions" )
-
 
 
 class Answer(models.Model):
@@ -41,25 +39,35 @@ class Answer(models.Model):
     questions= models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answers" )
 
 
+# class Profile(models.Model):
+#     Male = 'Male'
+#     Female = 'Female'
+#     GENDER = [
+#     ('Male','Male'),
+#     ('Female', 'Female')]
 
-class Profile(models.Model):
-    Male = 'Male'
-    Female = 'Female'
-    GENDER = [
-    ('Male','Male'),
-    ('Female', 'Female')]
+#     birthday=models.DateField()
+#     gender=models.CharField(choices=GENDER, max_length=6)
+#     avatar=models.ImageField(upload_to='', null=True, blank=True)
+#     score= models.PositiveIntegerField()
+#     user= models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile" )
 
-    birthday=models.DateField()
-    gender=models.CharField(choices=GENDER, max_length=6)
-    avatar=models.ImageField(upload_to='', null=True, blank=True)
-# class Coordinate(models.Model):
-#   xcoordinate=models.FloatField()
-#   ycoordinate=models.FloatField()
+
+class Difference(models.Model):
+    place=  models.OneToOneField(Place, on_delete=models.CASCADE, related_name="difference" )
+    img=models.ImageField(upload_to='', null=True, blank=True)
+    diffs=models.PositiveIntegerField()
+
+
+class Coordinate(models.Model):
+    xcoordinate=models.FloatField()
+    ycoordinate=models.FloatField()
+    difference=models.ForeignKey(Difference, on_delete=models.CASCADE, related_name="coordinates" )
 
 # class Games(models.Model):
 #   trivia= models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="Trivia" )
 #   riddle= models.ForeignKey(Riddles, on_delete=models.CASCADE, related_name="Riddles" )
-#   diff= models.ForeignKey(Diff, on_delete=models.CASCADE, related_name="Diff" )
+#   difference= models.ForeignKey(Diff, on_delete=models.CASCADE, related_name="Diff" )
 
 
 
