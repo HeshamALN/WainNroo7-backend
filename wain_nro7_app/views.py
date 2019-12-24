@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .serializers import UserCreateSerializer, PlacesSerializer, ProfileSerializer
-from .models import Place, Profile
+from .serializers import UserCreateSerializer, PlacesSerializer, DifferencesSerializer#, ProfileSerializer
+from .models import Place, Difference#, Profile
 from rest_framework.generics import (
 	ListAPIView,
 	RetrieveAPIView,
@@ -21,20 +21,25 @@ class MapListView(ListAPIView):
 	serializer_class = PlacesSerializer
 	permission_classes = [AllowAny]
 
-class ProfileAPIView(RetrieveAPIView):
-	serializer_class = ProfileSerializer
-	permission_classes = [IsAuthenticated]
+class diffView(ListAPIView):
+	queryset = Difference.objects.all()
+	serializer_class = DifferencesSerializer
+	permission_classes = [AllowAny]
 
-	def get_object(self):
-		return self.request.user
+# class ProfileAPIView(RetrieveAPIView):
+# 	serializer_class = ProfileSerializer
+# 	permission_classes = [IsAuthenticated]
 
-class Score(APIView):
+# 	def get_object(self):
+# 		return self.request.user
 
-	permission_classes= [IsAuthenticated]
+# class Score(APIView):
 
-	def post(self, request, format=None):
-		profile = request.user.profile
-		profile.score += request.POST.get('score')
-		profile.save()
-		return Response()
+# 	permission_classes= [IsAuthenticated]
+
+# 	def post(self, request, format=None):
+# 		profile = request.user.profile
+# 		profile.score += request.POST.get('score')
+# 		profile.save()
+# 		return Response()
 
