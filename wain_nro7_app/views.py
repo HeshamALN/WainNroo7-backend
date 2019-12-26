@@ -21,14 +21,18 @@ class MapListView(ListAPIView):
 	serializer_class = PlacesSerializer
 	permission_classes = [AllowAny]
 
-class diffView(ListAPIView):
+class DiffView(RetrieveAPIView):
 	queryset = Difference.objects.all()
 	serializer_class = DifferencesSerializer
+	lookup_field = 'id'
+	lookup_url_kwarg = 'diff_id'
 	permission_classes = [AllowAny]
 
-class triviaView(ListAPIView):
+class TriviaView(RetrieveAPIView):
 	queryset = Trivia.objects.all()
 	serializer_class = TriviaSerializer
+	lookup_field = 'id'
+	lookup_url_kwarg = 'trivia_id'
 	permission_classes = [AllowAny]
 
 # class ProfileAPIView(RetrieveAPIView):

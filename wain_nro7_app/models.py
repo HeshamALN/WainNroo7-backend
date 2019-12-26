@@ -22,18 +22,18 @@ class Trivia(models.Model):
     def __str__(self):
         return self.place.name
 
-class Questions(models.Model):
+class Question(models.Model):
     question=models.TextField()
     # order=models.PositiveIntegerField()
     trivia=models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="questions" )
     def __str__(self):
         return self.question
 
-class Answers(models.Model):
+class Answer(models.Model):
     answer=models.TextField()
     right=models.BooleanField(default= False)
     score=models.FloatField()
-    questions= models.ForeignKey(Questions, on_delete=models.CASCADE, related_name="answers" )
+    questions= models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answers" )
     def __str__(self):
         return self.questions.question
 
