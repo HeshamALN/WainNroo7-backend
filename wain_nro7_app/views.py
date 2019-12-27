@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .serializers import UserCreateSerializer, PlacesSerializer, DifferencesSerializer, TriviaSerializer#, ProfileSerializer
-from .models import Place, Difference, Trivia#, Profile
+from .serializers import UserCreateSerializer, PlacesSerializer, DifferencesSerializer, TriviaSerializer, RiddleSerializer#, ProfileSerializer
+from .models import Place, Difference, Trivia, Riddle#, Profile
 from rest_framework.generics import (
 	ListAPIView,
 	RetrieveAPIView,
@@ -33,6 +33,14 @@ class TriviaView(RetrieveAPIView):
 	serializer_class = TriviaSerializer
 	lookup_field = 'id'
 	lookup_url_kwarg = 'trivia_id'
+	permission_classes = [AllowAny]
+
+
+class RiddleView(RetrieveAPIView):
+	queryset = Riddle.objects.all()
+	serializer_class = RiddleSerializer
+	lookup_field = 'id'
+	lookup_url_kwarg = 'riddle_id'
 	permission_classes = [AllowAny]
 
 # class ProfileAPIView(RetrieveAPIView):

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from wain_nro7_app.models import Place, Difference, Coordinate, Trivia, Question, Answer#, Profile
+from wain_nro7_app.models import Place, Difference, Coordinate, Trivia, Question, Answer, Riddle#, Profile
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -57,6 +57,13 @@ class TriviaSerializer(serializers.ModelSerializer):
         model = Trivia
         fields = ["id", "lock", "questions"]
  
+
+class RiddleSerializer(serializers.ModelSerializer):
+    questions = QuestionsSerializer(many=True)
+    class Meta:
+        model = Riddle
+        fields = ["id", "lock", "questions"]
+
 # class ProfileSerializer(serializers.ModelSerializer):
 #     user_info = UserCreateSerializer(many=True)
 #     class Meta:
