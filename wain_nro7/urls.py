@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from wain_nro7_app.views import UserCreateAPIView, MapListView, DiffView, TriviaView, RiddleView#, ProfileAPIView
+from wain_nro7_app.views import UserCreateAPIView, MapListView, DiffView, TriviaView, RiddleView, ProfileAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -28,7 +28,7 @@ urlpatterns = [
     path('diffs/<int:diff_id>/', DiffView.as_view(), name='diff-game'),
     path('trivia/<int:trivia_id>/', TriviaView.as_view(), name='trivia-game'),
     path('riddle/<int:riddle_id>/', RiddleView.as_view(), name='riddle-game'),
-    # path('profile/', ProfileAPIView.as_view(), name='profile'),
+    path('profile/', ProfileAPIView.as_view(), name='profile'),
     # path('gameslist/', GamesListfoView.as_view(), name='games-list'),
 ]
 if settings.DEBUG:
