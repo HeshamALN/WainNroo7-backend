@@ -55,20 +55,16 @@ class Riddle(models.Model):
     def __str__(self):
         return self.place.name
 
-# class Profile(models.Model):
-#     Male = 'Male'
-#     Female = 'Female'
-#     GENDER = [
-#     ('Male','Male'),
-#     ('Female', 'Female')]
-
-#     birthday=models.DateField()
-#     gender=models.CharField(choices=GENDER, max_length=6)
-#     avatar=models.ImageField(upload_to='', null=True, blank=True)
-#     score= models.PositiveIntegerField()
-#     user= models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile" )
+class Profile(models.Model):
+    GENDER = [
+    ('Male','Male'),
+    ('Female', 'Female')]
+    birthday=models.DateField()
+    gender=models.CharField(choices=GENDER, max_length=6)
+    total_score= models.PositiveIntegerField()
+    user= models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile" )
 
 # class Games(models.Model):
 #   trivia= models.ForeignKey(Trivia, on_delete=models.CASCADE, related_name="Trivia" )
-#   riddle= models.ForeignKey(Riddles, on_delete=models.CASCADE, related_name="Riddles" )
-#   difference= models.ForeignKey(Diff, on_delete=models.CASCADE, related_name="Diff" )
+#   riddle= models.ForeignKey(Riddle, on_delete=models.CASCADE, related_name="Riddles" )
+#   difference= models.ForeignKey(Difference, on_delete=models.CASCADE, related_name="Diff" )
